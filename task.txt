@@ -152,10 +152,6 @@ subjects:
 
 # kubectl create -f fluentd-rbac.yaml
 
-# mkdir -p /var/log/varlog
-
-# mkdir -p /var/lib/docker/containers
-
 # vim fluentd-daemonset.yaml
 
 apiVersion: extensions/v1beta1
