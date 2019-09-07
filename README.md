@@ -1,7 +1,7 @@
 # kubectl create namespace logging
 
 # vim elastic.yaml
-
+```
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -48,7 +48,7 @@ spec:
   ports:
   - port: 9200
     targetPort: 9200
-
+```
 # kubectl create -f elastic.yaml -n logging
 
 # kubectl get pods -n logging
@@ -58,7 +58,7 @@ spec:
 run the next command when you get elasticsearch pod and svc running 
 
 # vim kibana.yaml
-
+```
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -149,7 +149,7 @@ subjects:
 - kind: ServiceAccount
   name: fluentd
   namespace: kube-system
-
+```
 # kubectl create -f fluentd-rbac.yaml
 
 # mkdir -p /var/log/varlog
@@ -157,7 +157,7 @@ subjects:
 # mkdir -p /var/lib/docker/containers
 
 # vim fluentd-daemonset.yaml
-
+```
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
@@ -212,7 +212,7 @@ spec:
       - name: varlibdockercontainers
         hostPath:
           path: /var/lib/docker/containers
-
+```
 # kubectl create -f fluentd-daemonset.yaml
 
 YOUR KIBANA SERVER IS READY !!!
