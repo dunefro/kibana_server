@@ -1,6 +1,6 @@
-# kubectl create namespace logging
+$ kubectl create namespace logging
 
-# vim elastic.yaml
+$ vim elastic.yaml
 ```
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -49,15 +49,15 @@ spec:
   - port: 9200
     targetPort: 9200
 ```
-# kubectl create -f elastic.yaml -n logging
+$ kubectl create -f elastic.yaml -n logging
 
-# kubectl get pods -n logging
+$ kubectl get pods -n logging
 
-# kubectl get service -n logging  
+$ kubectl get service -n logging  
 
 run the next command when you get elasticsearch pod and svc running 
 
-# vim kibana.yaml
+$ vim kibana.yaml
 ```
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -101,15 +101,15 @@ spec:
   - port: 5601
     targetPort: 5601
 
-# kubectl create -f kibana.yaml -n logging
+$ kubectl create -f kibana.yaml -n logging
 
-# kubectl get pods -n logging
+$ kubectl get pods -n logging
 
-# kubectl get service -n logging
+$ kubectl get service -n logging
 
 Test this in your browser at http://MINIKUBE_IP:5601
  
-# vim fluentd-rbac.yaml
+$ vim fluentd-rbac.yaml
 
 apiVersion: v1
 kind: ServiceAccount
@@ -150,13 +150,13 @@ subjects:
   name: fluentd
   namespace: kube-system
 ```
-# kubectl create -f fluentd-rbac.yaml
+$ kubectl create -f fluentd-rbac.yaml
 
-# mkdir -p /var/log/varlog
+$ mkdir -p /var/log/varlog
 
-# mkdir -p /var/lib/docker/containers
+$ mkdir -p /var/lib/docker/containers
 
-# vim fluentd-daemonset.yaml
+$ vim fluentd-daemonset.yaml
 ```
 apiVersion: extensions/v1beta1
 kind: DaemonSet
@@ -213,7 +213,7 @@ spec:
         hostPath:
           path: /var/lib/docker/containers
 ```
-# kubectl create -f fluentd-daemonset.yaml
+$ kubectl create -f fluentd-daemonset.yaml
 
 YOUR KIBANA SERVER IS READY !!!
 TO ACCESS IT -
