@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ $1 == ""]
+then 
+   echo "Enter atleast one IP"
+
+else
+    ssh root@$1 yum install git -y && ssh root@$1 cd /root/ && ssh root@$1 git clone https://github.com/aditi1611/kibana_server \
+    && ssh root@$1 chmod +x /root/kibana_server/automate.sh \
+    && ssh root@$1 /root/kibana_server/automate.sh
+
+fi
